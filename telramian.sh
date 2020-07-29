@@ -524,6 +524,23 @@ alias m='sudo mysql'
 EOT
 source ~/.bashrc
 
+# add user for remote login
+echo 'Add additional user'
+echo -n 'Do you want to add an additional user for maintenance? [Y|n]'
+read maintenanceuserdecision
+if [[ $maintenanceuserdecision =~ (Y|y) ]]
+  then
+  echo -n 'Input maintenance username: '
+  read maintenanceusername
+sudo adduser $maintenanceusername
+sudo adduser $maintenanceusername sudo
+elif [[ $userdecision =~ (n) ]]
+  then
+    echo 'No modifications was made'
+else
+    echo 'Invalid input!'
+fi
+
 # disabling SSH
 echo_process 'Disabling SSH"'
 echo 'Disabling SSH'
