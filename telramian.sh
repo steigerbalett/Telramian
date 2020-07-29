@@ -2,14 +2,14 @@
 # -------------------------------------------------------------
 # Telramian
 # Script to easily install Telraam (https://telraam.net) an rpi
-# OS: Raspberry Pi OS Lite (Buster) version 2020-05-27
+# OS: Raspberry Pi OS (32-bit) Lite (Buster) version 2020-05-27
 # Python: 3.7.3
-# OpenCV: 4.3.0
+# OpenCV: 4.4.0
 # Based on https://github.com/Telraam/Telraam-RPi
 # Author= Manuel Stevens (manuel.stevens@ardesco.be)
 # -------------------------------------------------------------
 
-OPENCV_VERSION='4.3.0'
+OPENCV_VERSION='4.4.0'
 
 # path to Telraam application
 PATH_TELRAAM=$HOME/Telraam
@@ -48,12 +48,12 @@ echo_process "------------------------------"
 echo_process "----Telramian installation----"
 echo_process "------------------------------"
 
-echo_process "Setting keyboard to be (Belgian)"
-L='be' && sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'$L'\"/g' /etc/default/keyboard
-sudo dpkg-reconfigure keyboard-configuration -f noninteractive
-sudo invoke-rc.d keyboard-setup start
-sudo setsid sh -c 'exec setupcon -k --force <> /dev/tty1 >&0 2>&1'
-sudo udevadm trigger --subsystem-match=input --action=change
+#echo_process "Setting keyboard to be (Belgian)"
+#L='be' && sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'$L'\"/g' /etc/default/keyboard
+#sudo dpkg-reconfigure keyboard-configuration -f noninteractive
+#sudo invoke-rc.d keyboard-setup start
+#sudo setsid sh -c 'exec setupcon -k --force <> /dev/tty1 >&0 2>&1'
+#sudo udevadm trigger --subsystem-match=input --action=change
 
 echo_process "Disabling splash screen"
 CMDLINE=/boot/cmdline.txt
@@ -524,13 +524,61 @@ alias m='sudo mysql'
 EOT
 source ~/.bashrc
 
-echo_process 'Disabling SSH"'
-sudo systemctl disable ssh.service
-sudo systemctl stop ssh.service
+# add user for remote login
+echo 'Add additional user'
+echo 'Do you want to add an additional user for maintenance? [Y|n] '
+read maintenanceuserdecision
+if [[ $maintenanceuserdecision =~ (Y|y) ]]
+  then
+  echo -n 'Input maintenance username: '
+  read maintenanceusername
+sudo adduser $maintenanceusername
+sudo adduser $maintenanceusername sudo
+elif [[ $userdecision =~ (n) ]]
+  then
+    echo 'No modifications was made'
+else
+    echo 'Invalid input!'
+fi
 
-# cleanupo opencv folder
+# disabling SSH
+echo 'Disabling SSH'
+echo -n 'Do you want to disable SSH [Y/n] '
+read disablesshdecision
+
+if [[ $disablesshdecision =~ (Y|y) ]]
+  then
+sudo systemctl stop ssh.service
+sudo systemctl disable ssh.service
+elif [[ $disablesshdecision =~ (n) ]]
+  then
+    echo 'No modifications was made'
+else
+    echo 'Invalid input!'
+fi
+
+# cleanup opencv folder
 sudo rm -rf $PATH_TELRAAM_RPI
 sudo rm -rf $PATH_OPENCV_BASE
 
 echo_process "Log file: telramian-build-$timestamp.log"
-echo_process 'Done! You can now reboot with sudo reboot -h now'
+
+# reboot the raspi
+echo 'Should the the RaspberryPi now reboot directly or do you do this manually later?'
+echo -n 'Do you want to reboot now [Y/n] '
+read rebootdecision
+
+if [[ $rebootdecision =~ (Y|y) ]]
+  then
+echo ''
+echo 'System will reboot in 3 seconds'
+sleep 3
+sudo shutdown -r now
+elif [[ $rebootdecision =~ (n) ]]
+  then
+    echo 'Please reboot to activate the changes'
+else
+    echo 'Invalid input!'
+fi
+echo 'Reboot the RaspberryPi now with: sudo shutdown -r now'
+exit
