@@ -67,8 +67,20 @@ echo_process "Enabling camera"
 sudo tee -a /boot/config.txt > /dev/null <<EOT
 
 start_x=1
-gpu_mem=128
 EOT
+
+# Increasing GPU memory (universal)
+if grep gpu_mem /boot/config.txt; then
+  echo "Not changing GPU memory since it's already set"
+else
+  echo "Increasing GPU memory (universal)..."
+  echo "========================"
+  echo "" >> /boot/config.txt
+  echo "# Increase GPU memory" >> /boot/config.txt
+  echo "gpu_mem_256=128" >> /boot/config.txt
+  echo "gpu_mem_512=256" >> /boot/config.txt
+  echo "gpu_mem_1024=384" >> /boot/config.txt
+fi
 
 echo_process "Update and upgrade existing packages"
 sudo apt update -y
