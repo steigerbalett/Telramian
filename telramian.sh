@@ -526,7 +526,7 @@ source ~/.bashrc
 
 # add user for remote login
 echo 'Add additional user'
-echo -n 'Do you want to add an additional user for maintenance? [Y|n]'
+echo 'Do you want to add an additional user for maintenance? [Y|n] '
 read maintenanceuserdecision
 if [[ $maintenanceuserdecision =~ (Y|y) ]]
   then
@@ -542,7 +542,6 @@ else
 fi
 
 # disabling SSH
-echo_process 'Disabling SSH"'
 echo 'Disabling SSH'
 echo -n 'Do you want to disable SSH [Y/n] '
 read disablesshdecision
