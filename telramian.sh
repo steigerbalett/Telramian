@@ -48,12 +48,12 @@ echo_process "------------------------------"
 echo_process "----Telramian installation----"
 echo_process "------------------------------"
 
-echo_process "Setting keyboard to be (Belgian)"
-L='be' && sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'$L'\"/g' /etc/default/keyboard
-sudo dpkg-reconfigure keyboard-configuration -f noninteractive
-sudo invoke-rc.d keyboard-setup start
-sudo setsid sh -c 'exec setupcon -k --force <> /dev/tty1 >&0 2>&1'
-sudo udevadm trigger --subsystem-match=input --action=change
+#echo_process "Setting keyboard to be (Belgian)"
+#L='be' && sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'$L'\"/g' /etc/default/keyboard
+#sudo dpkg-reconfigure keyboard-configuration -f noninteractive
+#sudo invoke-rc.d keyboard-setup start
+#sudo setsid sh -c 'exec setupcon -k --force <> /dev/tty1 >&0 2>&1'
+#sudo udevadm trigger --subsystem-match=input --action=change
 
 echo_process "Disabling splash screen"
 CMDLINE=/boot/cmdline.txt
