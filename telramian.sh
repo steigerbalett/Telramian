@@ -524,13 +524,45 @@ alias m='sudo mysql'
 EOT
 source ~/.bashrc
 
+# disabling SSH
 echo_process 'Disabling SSH"'
-sudo systemctl disable ssh.service
-sudo systemctl stop ssh.service
+echo 'Disabling SSH'
+echo -n 'Do you want to disable SSH [Y/n] '
+read disablesshdecision
 
-# cleanupo opencv folder
+if [[ $disablesshdecision =~ (Y|y) ]]
+  then
+sudo systemctl stop ssh.service
+sudo systemctl disable ssh.service
+elif [[ $disablesshdecision =~ (n) ]]
+  then
+    echo 'No modifications was made'
+else
+    echo 'Invalid input!'
+fi
+
+# cleanup opencv folder
 sudo rm -rf $PATH_TELRAAM_RPI
 sudo rm -rf $PATH_OPENCV_BASE
 
 echo_process "Log file: telramian-build-$timestamp.log"
-echo_process 'Done! You can now reboot with sudo reboot -h now'
+
+# reboot the raspi
+echo 'Should the the RaspberryPi now reboot directly or do you do this manually later?'
+echo -n 'Do you want to reboot now [Y/n] '
+read rebootdecision
+
+if [[ $rebootdecision =~ (Y|y) ]]
+  then
+echo ''
+echo 'System will reboot in 3 seconds'
+sleep 3
+sudo shutdown -r now
+elif [[ $rebootdecision =~ (n) ]]
+  then
+    echo 'Please reboot to activate the changes'
+else
+    echo 'Invalid input!'
+fi
+echo 'Reboot the RaspberryPi now with: sudo shutdown -r now'
+exit
