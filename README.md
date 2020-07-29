@@ -1,16 +1,16 @@
 # Telramian
 Script to do a headless install of Telraam (https://github.com/Telraam/Telraam-RPi) on a Raspberry Pi
 
- - OS: Raspberry Pi OS Lite (Buster) version 2020-05-27
+ - OS: Raspberry Pi OS (32-bit) Lite (Buster) version 2020-05-27
  - Python: 3.7.3
- - OpenCV: 4.3.0
+ - OpenCV: 4.4.0
 
 The script is based the installation instructions [Misc/general-configuration-HOWTO.txt](https://github.com/Telraam/Telraam-RPi/blob/master/Misc/general-configuration-HOWTO.txt) including the latest security enhancements and latest Raspberry Pi OS and OpenCV version.
 # Build instructions
 ## Install Raspberry Pi OS Lite
 Download **Raspberry Pi Imager** from [https://www.raspberrypi.org/downloads/](https://www.raspberrypi.org/downloads/)
 
-Use Raspberry Pi Imager to install the **Raspberry Pi OS Lite** on an SD card.
+Use Raspberry Pi Imager to install the **Raspberry Pi OS (32-bit) Lite** on an SD card.
 ## Download script
 Download **telramian.sh** to the **boot** partition on the sd card.
 On Windows this is the only partition you can see and contains files such as cmdline.txt, config.txt,....
