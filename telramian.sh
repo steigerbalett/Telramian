@@ -48,6 +48,18 @@ echo_process "------------------------------"
 echo_process "----Telramian installation----"
 echo_process "------------------------------"
 
+#Prerequisites
+echo Prerequisites: Checking if you are running as root...
+idinfo=$(id -u)
+if [[ idinfo -eq 0 ]]
+  then
+    echo 'You are running as root! :-)'
+else
+  echo 'You are not running as root :-('
+  echo 'This script has to run in SUDO mode to run smoothly!'
+  exit
+fi
+
 #echo_process "Setting keyboard to be (Belgian)"
 #L='be' && sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'$L'\"/g' /etc/default/keyboard
 #sudo dpkg-reconfigure keyboard-configuration -f noninteractive
@@ -63,11 +75,57 @@ if grep -q "splash" $CMDLINE ; then
     sudo sed -i $CMDLINE -e "s/ plymouth.ignore-serial-consoles//"
 fi
 
+#RaspberryPi Tweaks
+echo ""
+echo "========================"
+echo "RaspberryPi Tweaks"
+echo "========================"
+echo ""
+if grep hdmi_blanking=1 /boot/config.txt; then
+  echo "HDMI tweak already set"
+else
+echo "Turn off HDMI without connected Monitor"
+echo "========================"
+echo "" >> /boot/config.txt
+echo "# Turn off HDMI without connected Monitor" >> /boot/config.txt
+echo "hdmi_blanking=1" >> /boot/config.txt
+echo "" >> /boot/config.txt
+echo "# disable HDMI audio" >> /boot/config.txt
+echo "hdmi_drive=1" >> /boot/config.txt
+fi
+echo ""
+echo "" >> /boot/config.txt
+echo "# disable the splash screen" >> /boot/config.txt
+echo "disable_splash=1" >> /boot/config.txt
+echo "" >> /boot/config.txt
+echo "# disable overscan" >> /boot/config.txt
+echo "disable_overscan=1" >> /boot/config.txt
+echo ""
+echo "Enable Hardware watchdog"
+echo "========================"
+echo "" >> /boot/config.txt
+echo "# activating the hardware watchdog" >> /boot/config.txt
+echo "dtparam=watchdog=on" >> /boot/config.txt
+echo ""
+echo "Disable search for SD after USB boot"
+echo "========================"
+echo "" >> /boot/config.txt
+echo "# stopp searching for SD-Card after boot" >> /boot/config.txt
+echo "dtoverlay=sdtweak,poll_once" >> /boot/config.txt
+
 echo_process "Enabling camera"
 sudo tee -a /boot/config.txt > /dev/null <<EOT
-
 start_x=1
 EOT
+
+# Disabling Camera LED
+if grep disable_camera_led /boot/config.txt; then
+  echo "Not change the camera LED since it's already set"
+else
+  echo "Disabling camera LED"
+  echo "========================"
+  echo "disable_camera_led=1" >> /boot/config.txt
+fi
 
 # Increasing GPU memory (universal)
 if grep gpu_mem /boot/config.txt; then
