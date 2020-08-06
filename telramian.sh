@@ -229,9 +229,6 @@ echo_process "install opencv sub-module highgui (display images, basic GUIs) pre
 #libpango1.0-dev: Pango is a library for layout and rendering of text, with an emphasis on internationalization. Pango can be used anywhere that text layout is needed. however, most of the work on Pango-1.0 was done using the GTK+ widget toolkit as a test platform. Pango forms the core of text and font handling for GTK+-2.0.
 sudo apt install libfontconfig1-dev libcairo2-dev libgdk-pixbuf2.0-dev libpango1.0-dev -y
 
-echo_process "Install g++ for opencv Tengine build support"
-sudo apt install g++-arm-linux-gnueabihf -y
-
 echo_process "Installing python3-dev"
 sudo apt install python3-dev python3-pip -y
 
@@ -620,6 +617,7 @@ if [[ $disablesshdecision =~ (Y|y) ]]
   then
 sudo systemctl stop ssh.service
 sudo systemctl disable ssh.service
+sudo rm /boot/ssh
 elif [[ $disablesshdecision =~ (n) ]]
   then
     echo 'No modifications was made'
