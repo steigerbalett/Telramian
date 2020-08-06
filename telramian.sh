@@ -183,7 +183,7 @@ echo_process "Install testresources picamera[array] wget numpy scipy pandas"
 sudo python3 -m pip install testresources picamera[array] wget numpy scipy pandas
 
 echo_process "Increase SWAP space to compile without hanging due to memory exhausting and on all 4 cores"
-sudo sed -i 's/CONF_SWAPSIZE=100/CONF_SWAPSIZE=1024/g' /etc/dphys-swapfile
+sudo sed -i 's/CONF_SWAPSIZE=100/CONF_SWAPSIZE=2048/g' /etc/dphys-swapfile
 sudo /etc/init.d/dphys-swapfile stop
 sudo /etc/init.d/dphys-swapfile start
 
@@ -228,8 +228,8 @@ nproc | xargs -I % make -j%
 sudo make install
 sudo ldconfig
 
-echo_process "Reset SWAP space to 1000"
-sudo sed -i 's/CONF_SWAPSIZE=1024/CONF_SWAPSIZE=100/g' /etc/dphys-swapfile
+echo_process "Reset SWAP space to 100"
+sudo sed -i 's/CONF_SWAPSIZE=2048/CONF_SWAPSIZE=100/g' /etc/dphys-swapfile
 sudo /etc/init.d/dphys-swapfile stop
 sudo /etc/init.d/dphys-swapfile start
 
