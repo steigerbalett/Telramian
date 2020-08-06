@@ -230,7 +230,7 @@ echo_process "install opencv sub-module highgui (display images, basic GUIs) pre
 sudo apt install libfontconfig1-dev libcairo2-dev libgdk-pixbuf2.0-dev libpango1.0-dev -y
 
 echo_process "Install g++ for opencv Tengine build support"
-sudo apt install g++-arm-linux-gnueabihf
+sudo apt install g++-arm-linux-gnueabihf -y
 
 echo_process "Installing python3-dev"
 sudo apt install python3-dev python3-pip -y
