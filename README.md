@@ -33,7 +33,7 @@ Set execute permissions for the script
 
 Execute the script
 
-`/boot/telramian.sh`
+`sudo /boot/telramian.sh`
 
 The script will take a couple of hours to build (tested in Raspberry Pi 4 4GB)
 
