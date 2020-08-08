@@ -105,7 +105,7 @@ echo_process "Install GTK/GTK+"
 #libgtk-3-dev GTK
 sudo apt install libgtk2.0-dev libgtk-3-dev -y
 
-echo_process "install Qt (cross-platform C++ application framework)"
+echo_process "Install Qt (cross-platform C++ application framework)"
 #Qt is a cross-platform C++ application framework. Qt's primary feature is its rich set of widgets that provide standard GUI functionality.
 #qt5-default: sets Qt 5 to be the default Qt version to be used when using development binaries like qmake. It provides a default configuration for qtchooser, but does not prevent alternative Qt installations from being used.
 #libqtgui4: the QtGui module extends QtCore with GUI functionality.
@@ -129,7 +129,7 @@ echo_process "Install optimizations libraries"
 #doxygen: Documentation system for C++, C, Java, Objective-C and IDL.
 sudo apt install libatlas-base-dev libtbb-dev libtbb2 libhdf5-dev libhdf5-103 libeigen3-dev liblapacke-dev libprotobuf-dev protobuf-compiler libgoogle-glog-dev libgflags-dev doxygen -y
 
-echo_process "install image I/O packages"
+echo_process "Install image I/O packages"
 #libjpeg-dev: JPEG library.
 #libjpeg62-turbo-dev: libjpeg-turbo is a JPEG image codec that uses SIMD instructions (MMX, SSE2, NEON) to accelerate baseline JPEG compression and decompression on x86, x86-64, and ARM systems. 
 #libpng-dev: PNG (Portable Network Graphics) library
@@ -139,7 +139,7 @@ echo_process "install image I/O packages"
 #libopenexr-dev: OpenEXR is a high dynamic-range (HDR) image library
 sudo apt install libjpeg-dev libjpeg62-turbo-dev libpng-dev libtiff-dev libjasper-dev libwebp-dev libopenexr-dev -y 
 
-echo_process "install video I/O packages"
+echo_process "Install video I/O packages"
 #libavcodec-dev: Libav is a complete, cross-platform solution to decode, encode, record, convert and stream audio and video. This is the codec library from Libav. It supports most existing encoding formats (MPEG, DivX, MPEG4, AC3, DV...). 
 #libavformat-dev: Libav is a complete, cross-platform solution to decode, encode, record, convert and stream audio and video. This is the demuxer library from Libav. It supports most existing file formats (AVI, MPEG, OGG, Matroska, ASF...).
 #libavresample-dev: Libav is a complete, cross-platform solution to decode, encode, record, convert and stream audio and video. This is the video scaling library from Libav.
@@ -152,17 +152,17 @@ echo_process "install video I/O packages"
 #libxvidcore-dev: Xvid (formerly XviD) is an open source MPEG-4 video codec, implementing MPEG-4 Simple Profile, Advanced Simple Profile, and Advanced Video Coding standards.
 sudo apt install libavcodec-dev libavformat-dev libavresample-dev libswscale-dev x264 libx264-dev libv4l-dev v4l-utils libtheora-dev libxvidcore-dev -y
 
-echo_process "install audio I/O packages"
+echo_process "Install audio I/O packages"
 #libmp3lame-dev: LAME (LAME Ain't an MP3 Encoder) includes an MP3 encoding library, a simple frontend application, and other tools for sound analysis, as well as convenience tools.
 #libvorbis-dev: development files for Vorbis General Audio Compression Codec. Ogg Vorbis is a fully open, non-proprietary, patent-and-royalty-free, general-purpose compressed audio format for audio and music at fixed and variable bitrates from 16 to 128 kbps/channel.
 #libopencore-amrnb-dev: library contains an implementation of the 3GPP TS 26.073 specification for the Adaptive Multi Rate (AMR) speech codec.
 sudo apt install libmp3lame-dev libvorbis-dev libopencore-amrnb-dev -y
 
-echo_process "install digital camera I/O packages"
+echo_process "Install digital camera I/O packages"
 #libgphoto2-dev: library can be used by applications to access various digital camera models, via standard protocols such as USB Mass Storage and PTP, or vendor-specific protocols.
 sudo apt install libgphoto2-dev -y
 
-echo_process "install opencv sub-module highgui (display images, basic GUIs) prerequisites"
+echo_process "Install opencv sub-module highgui (display images, basic GUIs) prerequisites"
 #libfontconfig1-dev: Fontconfig is a font configuration and customization library, which does not depend on the X Window System. It is designed to locate fonts within the system and select them according to requirements specified by applications.
 #libcairo2-dev: Cairo is a multi-platform 2D library providing anti-aliased vector-based rendering for multiple target backends. This package contains the development libraries, header files needed by programs that want to compile with Cairo.
 #libgdk-pixbuf2.0-dev: The GDK Pixbuf library provides Image loading and saving facilities, Fast scaling and compositing of pixbufs and Simple animation loading (ie. animated GIFs). This package contains the header files which are needed for using GDK Pixbuf.
@@ -233,7 +233,7 @@ sudo sed -i 's/CONF_SWAPSIZE=2048/CONF_SWAPSIZE=100/g' /etc/dphys-swapfile
 sudo /etc/init.d/dphys-swapfile stop
 sudo /etc/init.d/dphys-swapfile start
 
-echo_process "Instal mysql database server mariadb with python support"
+echo_process "Install mysql database server mariadb with python support"
 sudo apt install mariadb-server python3-mysqldb -y
 
 echo_process "Install apache2 web server with php and mysql support"
