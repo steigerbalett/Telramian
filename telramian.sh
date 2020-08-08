@@ -60,12 +60,30 @@ else
   exit
 fi
 
-#echo_process "Setting keyboard to be (Belgian)"
-#L='be' && sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'$L'\"/g' /etc/default/keyboard
-#sudo dpkg-reconfigure keyboard-configuration -f noninteractive
-#sudo invoke-rc.d keyboard-setup start
-#sudo setsid sh -c 'exec setupcon -k --force <> /dev/tty1 >&0 2>&1'
-#sudo udevadm trigger --subsystem-match=input --action=change
+# Setting keyboard language
+echo 'Change keyboard language on the device'
+echo '(irrelevant with ssh sessions)'
+echo -n 'Do you want to change keyboard language [Y/n] '
+read changekeyboardlanguagedecision
+
+if [[ $changekeyboardlanguagedecision =~ (Y|y|z|Z) ]]
+  then
+echo 'Which keyboardlayout do you wnat to use?'
+echo 'Type in the countrycode (2 digits lowercase!: be=belgian, de=deutsch, fr=français, ...) '
+read changelanguagedecision
+
+sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'$changelanguagedecision'\"/g' /etc/default/keyboard
+sudo dpkg-reconfigure keyboard-configuration -f noninteractive
+sudo service keyboard-setup restart
+sudo setsid sh -c 'exec setupcon -k --force <> /dev/tty1 >&0 2>&1'
+sudo udevadm trigger --subsystem-match=input --action=change
+ 
+elif [[ $changekeyboardlanguagedecision =~ (n) ]]
+  then
+    echo 'No modifications was made'
+else
+    echo 'Invalid input!'
+fi
 
 echo_process "Disabling splash screen"
 CMDLINE=/boot/cmdline.txt
