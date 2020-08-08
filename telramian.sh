@@ -57,7 +57,7 @@ read changekeyboardlanguagedecision
 if [[ $changekeyboardlanguagedecision =~ (Y|y|z|Z) ]]
   then
 echo 'Which keyboardlayout do you wnat to use?'
-echo 'Type in the countrycode (2 digits: BE=belgian, DE=deutsch, FR=français, ...) '
+echo 'Type in the countrycode (2 digits lowercase!: be=belgian, de=deutsch, fr=français, ...) '
 read changelanguagedecision
 
 sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'$changelanguagedecision'\"/g' /etc/default/keyboard
