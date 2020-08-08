@@ -49,14 +49,15 @@ echo_process "----Telramian installation----"
 echo_process "------------------------------"
 
 # Setting keyboard language
-echo 'change keyboard language'
+echo 'Change keyboard language on the device'
+echo '(irrelevant with ssh sessions)'
 echo -n 'Do you want to change keyboard language [Y/n] '
 read changekeyboardlanguagedecision
 
 if [[ $changekeyboardlanguagedecision =~ (Y|y|z|Z) ]]
   then
 echo 'Which keyboardlayout do you wnat to use?'
-echo 'Type in the countrycode (2 digits: be=belgian, de=deutsch, fr=français, ...) '
+echo 'Type in the countrycode (2 digits: BE=belgian, DE=deutsch, FR=français, ...) '
 read changelanguagedecision
 
 sudo sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'$changelanguagedecision'\"/g' /etc/default/keyboard
