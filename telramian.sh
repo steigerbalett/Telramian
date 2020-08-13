@@ -549,6 +549,9 @@ alias m='sudo mysql'
 EOT
 source ~/.bashrc
 
+# More WiFi driver ...
+sudo apt install firmware-ralink
+
 #RaspberryPi Tweaks
 echo ""
 echo "========================"
