@@ -201,9 +201,9 @@ echo_process "Install testresources picamera[array] wget numpy scipy pandas"
 sudo python3 -m pip install testresources picamera[array] wget numpy scipy pandas
 
 echo_process "Increase SWAP space to compile without hanging due to memory exhausting and on all 4 cores"
+sudo systemctl stop dphys-swapfile
 sudo sed -i 's/CONF_SWAPSIZE=100/CONF_SWAPSIZE=2048/g' /etc/dphys-swapfile
-sudo /etc/init.d/dphys-swapfile stop
-sudo /etc/init.d/dphys-swapfile start
+sudo systemctl start dphys-swapfile
 
 echo_process "Downloading opencv and opencv_contrib from github"
 mkdir -p $PATH_OPENCV_BASE
@@ -247,9 +247,9 @@ sudo make install
 sudo ldconfig
 
 echo_process "Reset SWAP space to 100"
+sudo systemctl stop dphys-swapfile
 sudo sed -i 's/CONF_SWAPSIZE=2048/CONF_SWAPSIZE=100/g' /etc/dphys-swapfile
-sudo /etc/init.d/dphys-swapfile stop
-sudo /etc/init.d/dphys-swapfile start
+sudo systemctl start dphys-swapfile
 
 echo_process "Install mysql database server mariadb with python support"
 sudo apt install mariadb-server python3-mysqldb -y
