@@ -441,8 +441,8 @@ sudo systemctl daemon-reload
 sudo systemctl enable telraam_ap_control_loop.service
 
 echo_process 'Install Login page'
-sudo cp -rf "$PATH_TELRAAM_RPI_ACCESS_POINT"/index.php /var/www/html/
-sudo chmod 755 /var/www/html/index.php
+sudo cp -rf "$PATH_TELRAAM_RPI_ACCESS_POINT"/. /var/www/html/
+sudo chmod -R 755 /var/www/html/
 sudo rm -f /var/www/html/index.html
 
 echo_process 'Setup Remote updating'
