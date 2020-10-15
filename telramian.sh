@@ -4,12 +4,12 @@
 # Script to easily install Telraam (https://telraam.net) an rpi
 # OS: Raspberry Pi OS (32-bit) Lite (Buster) version 2020-05-27
 # Python: 3.7.3
-# OpenCV: 4.4.0
+# OpenCV: 4.5.0
 # Based on https://github.com/Telraam/Telraam-RPi
 # Author= Manuel Stevens (manuel.stevens@ardesco.be)
 # -------------------------------------------------------------
 
-OPENCV_VERSION='4.4.0'
+OPENCV_VERSION='4.5.0'
 
 # path to Telraam application
 PATH_TELRAAM=$HOME/Telraam
