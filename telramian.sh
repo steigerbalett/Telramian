@@ -4,12 +4,12 @@
 # Script to easily install Telraam (https://telraam.net) an rpi
 # OS: Raspberry Pi OS (32-bit) Lite (Buster) version 2020-05-27
 # Python: 3.7.3
-# OpenCV: 4.5.0
+# OpenCV: 4.5.1
 # Based on https://github.com/Telraam/Telraam-RPi
 # Author= Manuel Stevens (manuel.stevens@ardesco.be)
 # -------------------------------------------------------------
 
-OPENCV_VERSION='4.5.0'
+OPENCV_VERSION='4.5.1'
 
 # path to Telraam application
 PATH_TELRAAM=$HOME/Telraam
@@ -257,6 +257,9 @@ sudo apt install mariadb-server python3-mysqldb -y
 echo_process "Install apache2 web server with php and mysql support"
 sudo apt install apache2 php libapache2-mod-php php-mysql -y
 
+echo_process "Install mysql-connect"
+sudo pip3 install mysql-connect
+
 echo_process "Install WIFI dnsmasq (dhcp) hostapd (access point)"
 sudo apt install dnsmasq hostapd -y
 
@@ -376,7 +379,7 @@ sudo systemctl reload dnsmasq
 #You need to edit the hostapd configuration file, located at /etc/hostapd/hostapd.conf, to add the various parameters for your wireless network.
 #After initial install, this will be a new/empty file.
 #Add the information below to the configuration file.
-#This configuration assumes we are using channel 7, with a network name of TELRAAM, and a password TelraamTelraam.
+#This configuration assumes we are using channel 6, with a network name of TELRAAM, and a password TelraamTelraam.
 #Note that the name and password should not have quotes around them.
 #The passphrase should be between 8 and 64 characters in length.
 #To use the 5 GHz band, you can change the operations mode from hw_mode=g to hw_mode=a. Possible values for hw_mode are:
