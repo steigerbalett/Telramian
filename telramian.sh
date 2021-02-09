@@ -2,7 +2,7 @@
 # -------------------------------------------------------------
 # Telramian
 # Script to easily install Telraam (https://telraam.net) an rpi
-# OS: Raspberry Pi OS (32-bit) Lite (Buster) version 2020-05-27
+# OS: Raspberry Pi OS (32-bit) Lite (Buster) version 2021-01-11
 # Python: 3.7.3
 # OpenCV: 4.5.1
 # Based on https://github.com/Telraam/Telraam-RPi
@@ -257,8 +257,8 @@ sudo apt install mariadb-server python3-mysqldb -y
 echo_process "Install apache2 web server with php and mysql support"
 sudo apt install apache2 php libapache2-mod-php php-mysql -y
 
-echo_process "Install mysql-connect"
-sudo pip3 install mysql-connect
+echo_process "Install mysql-connector"
+sudo pip3 install mysql-connector
 
 echo_process "Install WIFI dnsmasq (dhcp) hostapd (access point)"
 sudo apt install dnsmasq hostapd -y
