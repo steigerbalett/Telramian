@@ -1,9 +1,9 @@
 # Telramian
 Script to do a headless install of Telraam (https://github.com/Telraam/Telraam-RPi) on a Raspberry Pi
 
- - OS: Raspberry Pi OS (32-bit) Lite (Buster) version 2021-01-11
+ - OS: Raspberry Pi OS (32-bit) Lite (Buster) version 2021-05-07
  - Python: 3.7.3
- - OpenCV: 4.5.1
+ - OpenCV: 4.5.3
 
 The script is based the installation instructions [Misc/general-configuration-HOWTO.txt](https://github.com/Telraam/Telraam-RPi/blob/master/Misc/general-configuration-HOWTO.txt) including the latest security enhancements and latest Raspberry Pi OS and OpenCV version.
 # Build instructions
