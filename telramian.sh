@@ -632,19 +632,21 @@ else
     echo 'Invalid input!'
 fi
 
-# disabling SSH
-echo 'Disabling SSH'
-echo -n 'Do you want to disable SSH [Y/n] '
+# SSH
+echo 'SSH connection'
+echo 'SSH service is not running by default, you have to enable it'
+echo -n 'Do you want to connect to RPi by SSH [Y/n] '
 read disablesshdecision
 
 if [[ $disablesshdecision =~ (Y|y) ]]
   then
+sudo systemctl enable ssh.service
+sudo systemctl start ssh.service
+elif [[ $disablesshdecision =~ (n) ]]
+  then
 sudo systemctl stop ssh.service
 sudo systemctl disable ssh.service
 sudo rm /boot/ssh
-elif [[ $disablesshdecision =~ (n) ]]
-  then
-    echo 'No modifications was made'
 else
     echo 'Invalid input!'
 fi
